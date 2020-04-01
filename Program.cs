@@ -6,7 +6,8 @@ namespace Task_2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Animal a1 = new Animal(111, "Hipo", 'M', 15.76f, true);
+            a1.printAnimalInfo();
         }
     }
 }
