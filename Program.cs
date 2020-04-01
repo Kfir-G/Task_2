@@ -6,8 +6,14 @@ namespace Task_2
     {
         static void Main(string[] args)
         {
-            Animal a1 = new Animal(111, "Hipo", 'M', 15.76f, true);
+            Animal a1;
+            a1 = addNewAnimal();
             a1.printAnimalInfo();
+        }
+        public static Animal addNewAnimal()
+        {
+            Console.WriteLine("Insert animal information:code,name,kind,weight,is it water animal");
+            return new Animal(uint.Parse(Console.ReadLine()), Console.ReadLine(), char.Parse(Console.ReadLine()), float.Parse(Console.ReadLine()), bool.Parse(Console.ReadLine()));
         }
     }
 }
