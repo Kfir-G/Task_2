@@ -79,10 +79,17 @@ namespace Task_2
         {
             return isSea;
         }
-        
+        //print info:
         public void printAnimalInfo()
         {
             Console.WriteLine("Animal -\nCode:" + code + "\nName:" + name + "\nKind:" + kind + "\nWeight:" + weight + "\nWater Animal:"+isSea);
+        }
+        //destroder:
+        ~Animal()
+        {
+            Console.Write("~Animal() :");
+            printAnimalInfo();
+            Console.WriteLine(" destroyed");
         }
     }
 }

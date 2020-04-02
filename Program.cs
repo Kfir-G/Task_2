@@ -4,15 +4,27 @@ namespace Task_2
 {
     class Program
     {
+        //-------Main--------
         static void Main(string[] args)
         {
+            int choice;
+            Console.WriteLine("Hello Manager\n*\n*\n*");
+            Console.WriteLine("Animal Manager"); 
+            Console.WriteLine("\t1 - Add new Animal"); //1
+            Console.WriteLine("\t2 - Find animal by code");//2
+            Console.WriteLine("\t3 - Edit existing animal");//3
+            Console.WriteLine("\t4 - Print Animals By IsSea");//4
+            Console.WriteLine("\t5 - Print Animals Above 10kg and King is Female");//5
+            Console.WriteLine("\t6 - Exit");//6
+            choice = int.Parse(Console.ReadLine());
+            /*
             Animal a1, a2;
             a1 = addNewAnimal();
             a1.printAnimalInfo();
             a2 = addNewAnimal();
             a2.printAnimalInfo();
             Animal[] arr ={ a1, a2 };
-            PrintAnimalByIsSea(arr);
+            PrintAnimalByIsSea(arr);*/
         }
         public static Animal addNewAnimal()
         {
@@ -73,6 +85,17 @@ namespace Task_2
                     }
                 }
                 check = true;
+            }
+        }
+        public static void PrintAnimalsAbove10AndFemale(Animal [] arr)
+        {
+            for(int i=0; i<arr.Length;i++)
+            {
+                if (arr[i].GetKind() == 'F' && arr[i].GetWeight() > 10.0)
+                {
+                    Console.WriteLine("---------------------");
+                    arr[i].printAnimalInfo();
+                }
             }
         }
     }
