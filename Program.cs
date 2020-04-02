@@ -8,7 +8,8 @@ namespace Task_2
         static void Main(string[] args)
         {
             Animal[] animals = new Animal[100]; //default array size
-            int choice , idx = 0, tempCode;
+            int choice, idx = 0;
+            uint tempCode;
             Animal tempAnimal;
             ShowMenu();
             choice = int.Parse(Console.ReadLine());
@@ -22,22 +23,23 @@ namespace Task_2
                         break;
                     case 2:
                         Console.WriteLine("Insert a code number:");
-                        tempCode = int.Parse(Console.ReadLine());
+                        tempCode = uint.Parse(Console.ReadLine());
                         tempAnimal = findAnimalByCode(animals, tempCode);
                         if (tempAnimal == null)
                         {
                             Console.WriteLine("Didn't find");
                             break;
                         }
-                        tempAnimal.printAnimalInfo();
+                       else 
+                            tempAnimal.printAnimalInfo();
                         break;
                     case 3:
                         Console.WriteLine("Insert a code number:");
-                        tempCode = int.Parse(Console.ReadLine());
+                        tempCode = uint.Parse(Console.ReadLine());
                         if(EditAnimal(animals,tempCode)==true)
                         {
                             tempAnimal = findAnimalByCode(animals, tempCode);
-                            tempAnimal=addNewAnimal();
+                            tempAnimal=addNewAnimal();               
                         }
                         break;
                     case 4:
@@ -50,6 +52,7 @@ namespace Task_2
                         Console.WriteLine("Worng input");
                         break;
                 }
+                Console.WriteLine("-----------------------------------");
                 ShowMenu();
                 choice = int.Parse(Console.ReadLine());
             }
@@ -78,7 +81,7 @@ namespace Task_2
             }
             return new Animal(code, name, kind, weight, isSea);
         }
-        public static Animal findAnimalByCode(Animal[] arr, int code)
+        public static Animal findAnimalByCode(Animal[] arr, uint code)
         {
             for (int i = 0; i < arr.Length; i++)
             {
@@ -88,21 +91,27 @@ namespace Task_2
                     return arr[i];
                 }
             }
+            Console.WriteLine("Did NOT find");
             return null; //the code dont match to any animal's code
         }
-        public static bool EditAnimal(Animal[] arr, int code)
+        public static bool EditAnimal(Animal[] arr, uint code)
         {
+            char tempIsSea;
             Animal temp = findAnimalByCode(arr, code);
             if (temp == null)
             {
                 Console.WriteLine("The animal does not exist");
                 return false;
             }
-            Console.WriteLine("Insert animal new information");
+            Console.WriteLine("Insert animal new information except kind");
             temp.SetCode(uint.Parse(Console.ReadLine()));
             temp.SetName((Console.ReadLine()));
             temp.SetWeight(float.Parse(Console.ReadLine()));
-            temp.SetIsSea(bool.Parse(Console.ReadLine()));
+            tempIsSea = char.Parse(Console.ReadLine());
+            if (tempIsSea == 'T')
+                temp.SetIsSea(true);
+            else
+                temp.SetIsSea(false);
             return true;
         }
         public static void PrintAnimalByIsSea(Animal[] arr)
