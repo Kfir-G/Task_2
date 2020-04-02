@@ -6,9 +6,13 @@ namespace Task_2
     {
         static void Main(string[] args)
         {
-            Animal a1;
+            Animal a1, a2;
             a1 = addNewAnimal();
             a1.printAnimalInfo();
+            a2 = addNewAnimal();
+            a2.printAnimalInfo();
+            Animal[] arr ={ a1, a2 };
+            PrintAnimalByIsSea(arr);
         }
         public static Animal addNewAnimal()
         {
@@ -27,7 +31,7 @@ namespace Task_2
             }
             return null; //the code dont match to any animal's code
         }
-        public bool EditAnimal(Animal [] arr, int code)
+        public static bool EditAnimal(Animal [] arr, int code)
         {
             Animal temp = findAnimalByCode(arr, code);
             if(temp ==null)
@@ -41,6 +45,35 @@ namespace Task_2
             temp.SetWeight(float.Parse(Console.ReadLine()));
             temp.SetIsSea(bool.Parse(Console.ReadLine()));
             return true;
+        }
+        public static void PrintAnimalByIsSea(Animal [] arr)
+        {
+            string[] temp = new string[arr.Length+1]; // array of water animal
+            int idxTemp = 0, j;
+            bool check = true;
+            Console.WriteLine("-------------------------------------------------------------\nThe water animals:");
+            for(int i=0; i < arr.Length; i++)
+            {
+                if(arr[i].GetIsSea() == true)
+                {
+                    for(j=0; i<=idxTemp; i++)
+                    {
+                        if (arr[i].GetName() == temp[j])
+                        {
+                            check = false;
+                            break;
+                        }
+                    }
+                    if (check == true)
+                    {
+                        Console.WriteLine("----------------------------");
+                        arr[i].printAnimalInfo();
+                        temp[idxTemp] = arr[i].GetName();
+                        idxTemp++;
+                    }
+                }
+                check = true;
+            }
         }
     }
 }
