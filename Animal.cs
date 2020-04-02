@@ -89,7 +89,7 @@ namespace Task_2
         {
             Console.Write("~Animal() :");
             printAnimalInfo();
-            Console.WriteLine(" destroyed");
+            Console.WriteLine("destroyed");
         }
     }
 }

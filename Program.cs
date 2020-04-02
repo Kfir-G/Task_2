@@ -7,13 +7,13 @@ namespace Task_2
         //-------Main--------
         static void Main(string[] args)
         {
-            Animal[] animals = new Animal[100];
-            int choice = -1, idx = 0, tempCode;
+            Animal[] animals = new Animal[100]; //default array size
+            int choice , idx = 0, tempCode;
             Animal tempAnimal;
+            ShowMenu();
+            choice = int.Parse(Console.ReadLine());
             while (choice != 6)
             {
-                ShowMenu();
-                choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
@@ -50,6 +50,8 @@ namespace Task_2
                         Console.WriteLine("Worng input");
                         break;
                 }
+                ShowMenu();
+                choice = int.Parse(Console.ReadLine());
             }
 
         }
