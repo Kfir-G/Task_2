@@ -7,7 +7,7 @@ namespace Task_2
         //-------Main--------
         static void Main(string[] args)
         {
-            Animal[] animals = new Animal[100]; //default array size
+            Animal[] animals = new Animal[10]; //default array size
             int choice, idx = 0;
             uint tempCode;
             Animal tempAnimal;
@@ -98,7 +98,7 @@ namespace Task_2
         {
             char tempIsSea;
             Animal temp = findAnimalByCode(arr, code);
-            if (temp == null)
+            if (temp is null)
             {
                 Console.WriteLine("The animal does not exist");
                 return false;
