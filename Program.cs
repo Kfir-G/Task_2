@@ -58,7 +58,7 @@ namespace Task_2
             }
 
         }
-        public static Animal addNewAnimal()
+        static Animal addNewAnimal()
         { 
             uint code; string name; float weight; char kind, t; bool isSea = false;
             Console.WriteLine("\tAdd new animal:");
@@ -81,8 +81,13 @@ namespace Task_2
             }
             return new Animal(code, name, kind, weight, isSea);
         }
-        public static Animal findAnimalByCode(Animal[] arr, uint code)
-        {
+         static Animal findAnimalByCode(Animal[] arr, uint code)
+         {
+            if(arr[0]==null)
+            {
+                Console.WriteLine("There's no animals");
+                return null; ;
+            }
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i].GetCode() == code)
@@ -93,9 +98,14 @@ namespace Task_2
             }
             Console.WriteLine("Did NOT find");
             return null; //the code dont match to any animal's code
-        }
-        public static bool EditAnimal(Animal[] arr, uint code)
+         }
+        static bool EditAnimal(Animal[] arr, uint code)
         {
+            if(arr[0]==null)
+            {
+                Console.WriteLine("There's no animals");
+                return false;
+            }
             char tempIsSea;
             Animal temp = findAnimalByCode(arr, code);
             if (temp is null)
@@ -105,17 +115,22 @@ namespace Task_2
             }
             Console.WriteLine("Insert animal new information except kind");
             temp.SetCode(uint.Parse(Console.ReadLine()));
-            temp.SetName((Console.ReadLine()));
+            temp.SetName(Console.ReadLine());
             temp.SetWeight(float.Parse(Console.ReadLine()));
             tempIsSea = char.Parse(Console.ReadLine());
-            if (tempIsSea == 'T')
+            if (tempIsSea == 'Y')
                 temp.SetIsSea(true);
             else
                 temp.SetIsSea(false);
             return true;
         }
-        public static void PrintAnimalByIsSea(Animal[] arr)
+        static void PrintAnimalByIsSea(Animal[] arr)
         {
+            if(arr[0]==null)
+            {
+                Console.WriteLine("There's no animals");
+                return;
+            }
             string[] temp = new string[arr.Length + 1]; // array of water animal
             int idxTemp = 0, j;
             bool check = true;
@@ -143,8 +158,13 @@ namespace Task_2
                 check = true;
             }
         }
-        public static void PrintAnimalsAbove10AndFemale(Animal[] arr)
+        static void PrintAnimalsAbove10AndFemale(Animal[] arr)
         {
+            if(arr[0]==null)
+            {
+                Console.WriteLine("There's no animals");
+                return;
+            }
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i].GetKind() == 'F' && arr[i].GetWeight() > 10.0)
@@ -154,7 +174,7 @@ namespace Task_2
                 }
             }
         }
-        public static void ShowMenu()
+        static void ShowMenu()
         {
             Console.WriteLine("Hello Manager\n*\n*\n*");
             Console.WriteLine("Animal Manager");
