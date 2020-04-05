@@ -86,12 +86,5 @@ namespace Task_2
         {
             Console.WriteLine("Animal -\nCode:" + code + "\nName:" + name + "\nKind:" + kind + "\nWeight:" + weight + "\nWater Animal:"+isSea);
         }
-        //destroder:
-        ~Animal()
-        {
-            Console.Write("~Animal() :");
-            printAnimalInfo();
-            Console.WriteLine("destroyed");
-        }
     }
 }

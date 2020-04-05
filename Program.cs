@@ -7,7 +7,7 @@ namespace Task_2
         //-------Main--------
         static void Main(string[] args)
         {
-            Animal[] animals = new Animal[10]; //default array size
+            Animal[] animals = new Animal[50]; //default array size
             int choice, idx = 0;
             uint tempCode;
             Animal tempAnimal;
@@ -144,14 +144,16 @@ namespace Task_2
             Console.WriteLine("-------------------------------------------------------------\nThe water animals:");
             for (int i = 0; i < arr.Length; i++)
             {
+                if (arr[i] == null)
+                    return;
                 if (arr[i].GetIsSea() == true)
                 {
-                    for (j = 0; i <= idxTemp; i++)
+                    for (j = 0; j <= idxTemp; j++)
                     {
                         if (arr[i].GetName() == temp[j])
                         {
                             check = false;
-                            break;
+                            j=idxTemp;
                         }
                     }
                     if (check == true)
@@ -172,12 +174,13 @@ namespace Task_2
                 Console.WriteLine("There's no animals");
                 return;
             }
+            Console.WriteLine("---------------------");
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i].GetKind() == 'F' && arr[i].GetWeight() > 10.0)
                 {
-                    Console.WriteLine("---------------------");
                     arr[i].printAnimalInfo();
+                    Console.WriteLine("---------------------");
                 }
             }
         }
