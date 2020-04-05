@@ -36,11 +36,10 @@ namespace Task_2
                     case 3:
                         Console.WriteLine("Insert a code number:");
                         tempCode = uint.Parse(Console.ReadLine());
-                        if(EditAnimal(animals,tempCode)==true)
-                        {
-                            tempAnimal = findAnimalByCode(animals, tempCode);
-                            tempAnimal=addNewAnimal();               
-                        }
+                        if (EditAnimal(animals, tempCode) == true)
+                            Console.WriteLine("Animal change");
+                        else
+                            Console.WriteLine("Animal did NOT change");
                         break;
                     case 4:
                         PrintAnimalByIsSea(animals);
@@ -58,9 +57,11 @@ namespace Task_2
             }
 
         }
+
+        //-----functions-----
         static Animal addNewAnimal()
         { 
-            uint code; string name; float weight; char kind, t; bool isSea = false;
+            uint code; string name; float weight; char kind, t; bool isSea;
             Console.WriteLine("\tAdd new animal:");
             Console.WriteLine("Insert code number:");
             code = uint.Parse(Console.ReadLine());
@@ -76,8 +77,9 @@ namespace Task_2
                 isSea = true;
             else
             {
-                if (t == 'N') isSea = false;
-                else Console.WriteLine("Worng input");
+                isSea = false;
+                if (t != 'N')
+                    Console.WriteLine("Worng input");
             }
             return new Animal(code, name, kind, weight, isSea);
         }
@@ -90,6 +92,11 @@ namespace Task_2
             }
             for (int i = 0; i < arr.Length; i++)
             {
+                if(arr[i]==null) 
+                {
+                    Console.WriteLine("Did NOT find");
+                    return null; 
+                }
                 if (arr[i].GetCode() == code)
                 {
                     arr[i].printAnimalInfo();
